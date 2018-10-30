@@ -154,6 +154,7 @@ public class LatinSquare {
 		return (this.PV.size() > 0);
 	}	
 
+	
 	/**
 	 * Remove any zeros in an array
 	 * @version 1.2
