@@ -164,7 +164,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		for (int iRow = 0; iRow < iSize; iRow++) {
 			for (int iCol = 0; iCol < iSize; iCol++) {
 				SudokuCell c = new SudokuCell(iRow, iCol);
-				c.setlstValidValues(getAllValidCellValues(iCol, iRow));
+				c.setlstRemainingValidValues(getAllValidCellValues(iCol, iRow));
 				cells.put(c.hashCode(), c);
 			}
 		}
@@ -616,8 +616,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 		int multiplier = 1;
 		for(Integer key: cells.keySet()) {
 			SudokuCell current = cells.get(key);
-			if (current.getLstValidValues().size() > 0) {
-				multiplier = multiplier*current.getLstValidValues().size();
+			if (current.getLstRemainingValidValues().size() > 0) {
+				multiplier = multiplier*current.getLstRemainingValidValues().size();
 			}
 		}
 		return multiplier;
@@ -636,6 +636,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		private int iRow;
 		private int iCol;
 		private ArrayList<Integer> lstValidValues = new ArrayList<Integer>();
+		private ArrayList<Integer> lstRemainingValidValues = new ArrayList<Integer>();
 
 		public SudokuCell(int iRow, int iCol) {
 			super(iRow, iCol);
@@ -658,10 +659,18 @@ public class Sudoku extends LatinSquare implements Serializable {
 		public ArrayList<Integer> getLstValidValues() {
 			return lstValidValues;
 		}
+		
+		public ArrayList<Integer> getLstRemainingValidValues(){
+			return lstRemainingValidValues;
+		}
 
 
 		public void setlstValidValues(HashSet<Integer> hsValidValues) {
 			lstValidValues = new ArrayList<Integer>(hsValidValues);
+		}
+		
+		public void setlstRemainingValidValues(HashSet<Integer> hsRemainingValidValues) {
+			lstRemainingValidValues = new ArrayList<Integer>(hsRemainingValidValues);
 		}
 
 		public void ShuffleValidValues() {
