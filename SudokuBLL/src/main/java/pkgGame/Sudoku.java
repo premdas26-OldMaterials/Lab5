@@ -595,37 +595,19 @@ public class Sudoku extends LatinSquare implements Serializable {
 		}
 	}
 	
-	/*private void removeCells() {
-		Random rand = new Random();
-		int iRow = rand.nextInt(9);
-		int iCol = rand.nextInt(9);
-		SudokuCell c = cells.get(Objects.hash(iRow, iCol));
-		this.getPuzzle()[c.getiRow()][c.getiCol()] = 0;
-		SetRemainingCells();
-		int possibleValues = PossibleValuesMultiplier(cells);
-		//System.out.println(possibleValues);
-		if(isDifficultyMet(possibleValues)) {
-		}
-		else {
-			removeCells();
-		}
-	}*/
 	
 	private void removeCells() {
 		while(!isDifficultyMet(PossibleValuesMultiplier(cells))){
-			Random rand = new Random();
+			Random rand = new SecureRandom();
 			int iRow = rand.nextInt(9);
 			int iCol = rand.nextInt(9);
 			SudokuCell c = cells.get(Objects.hash(iRow, iCol));
 			this.getPuzzle()[c.getiRow()][c.getiCol()] = 0;
 			SetRemainingCells();
-			//System.out.println(possibleValues);
 		}
 	}
 	
 	private boolean isDifficultyMet(int PossibleValues) {
-		System.out.println(PossibleValues);
-		System.out.println(eGameDifficulty.getiDifficulty());
 		return (PossibleValues > eGameDifficulty.getiDifficulty());
 	}
 	

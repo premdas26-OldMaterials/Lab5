@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -142,9 +144,10 @@ public class SudokuTest {
 	@Test
 	public void SudokuRemoveTest() {
 		try {
-			Sudoku s1 = new Sudoku(9,eGameDifficulty.EASY);
+			Sudoku s1 = new Sudoku(9,eGameDifficulty.HARD);
 			s1.PrintPuzzle();
 			assertTrue(s1.isPartialSudoku());
+			Random rand = new SecureRandom();
 		} catch (Exception e) {
 		}
 	}
