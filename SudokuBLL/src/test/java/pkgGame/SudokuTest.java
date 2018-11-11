@@ -136,5 +136,14 @@ public class SudokuTest {
 //			fail("Test failed to build a Sudoku");
 //		}
 //	}
-
+	
+	@Test
+	public void SudokuRemoveTest() {
+		try {
+			Sudoku s1 = new Sudoku(9);
+			s1.PrintPuzzle();
+			assertTrue(s1.isPartialSudoku());
+		} catch (Exception e) {
+		}
+	}
 }
