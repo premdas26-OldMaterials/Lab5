@@ -10,10 +10,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Random;
 
-import pkgEnum.ePuzzleViolation;
+import pkgEnum.*;
 import pkgHelper.LatinSquare;
 import pkgHelper.PuzzleViolation;
- 
+
+
 
 /**
  * Sudoku - This class extends LatinSquare, adding methods, constructor to
@@ -44,6 +45,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 
 	private int iSqrtSize;
+	
+	private eGameDifficulty eGameDifficulty; 
 
 	private HashMap<Integer, SudokuCell> cells = new HashMap<Integer, SudokuCell>();
 	
@@ -60,8 +63,12 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @param iSize- length of the width/height of the puzzle
 	 * @throws Exception if the iSize given doesn't have a whole number square root
 	 */
+	private Sudoku() {
+		this.eGameDifficulty = eGameDifficulty.EASY;
+	}
+	
 	public Sudoku(int iSize) throws Exception {
-
+		this();
 		this.iSize = iSize;
 
 		double SQRT = Math.sqrt(iSize);
@@ -77,7 +84,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		FillDiagonalRegions();
 		SetCells();		
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
-		
+		//removeCells();
 	}
 
 	/**
@@ -100,6 +107,12 @@ public class Sudoku extends LatinSquare implements Serializable {
 			throw new Exception("Invalid size");
 		}
 
+	}
+	
+	public Sudoku(int iSize, eGameDifficulty eGD) throws Exception {
+		this(iSize);
+		this.eGameDifficulty = eGD;
+		//removeCells();
 	}
 
 	
@@ -604,7 +617,6 @@ public class Sudoku extends LatinSquare implements Serializable {
 			return iCol == c.iCol && iRow == c.iRow;
 
 		}
-
 
 		public ArrayList<Integer> getLstValidValues() {
 			return lstValidValues;
