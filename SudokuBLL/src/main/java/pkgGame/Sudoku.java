@@ -595,6 +595,15 @@ public class Sudoku extends LatinSquare implements Serializable {
 		}
 	}
 	
+	
+	private static int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {
+		int multiplier = 1;
+		for(Integer key: cells.keySet()) {
+			SudokuCell current = cells.get(key);
+			multiplier = multiplier*current.getLstValidValues().size();
+		}
+		return multiplier;
+	}
 		
 	/**
 	 * Cell - private class that handles possible remaining values
