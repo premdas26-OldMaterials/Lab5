@@ -595,7 +595,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		}
 	}
 	
-	private void removeCells() {
+	/*private void removeCells() {
 		Random rand = new Random();
 		int iRow = rand.nextInt(9);
 		int iCol = rand.nextInt(9);
@@ -603,13 +603,30 @@ public class Sudoku extends LatinSquare implements Serializable {
 		this.getPuzzle()[c.getiRow()][c.getiCol()] = 0;
 		SetRemainingCells();
 		int possibleValues = PossibleValuesMultiplier(cells);
-		if(!isDifficultyMet(possibleValues)) {
+		//System.out.println(possibleValues);
+		if(isDifficultyMet(possibleValues)) {
+		}
+		else {
 			removeCells();
+		}
+	}*/
+	
+	private void removeCells() {
+		while(!isDifficultyMet(PossibleValuesMultiplier(cells))){
+			Random rand = new Random();
+			int iRow = rand.nextInt(9);
+			int iCol = rand.nextInt(9);
+			SudokuCell c = cells.get(Objects.hash(iRow, iCol));
+			this.getPuzzle()[c.getiRow()][c.getiCol()] = 0;
+			SetRemainingCells();
+			//System.out.println(possibleValues);
 		}
 	}
 	
 	private boolean isDifficultyMet(int PossibleValues) {
-		return PossibleValues>  eGameDifficulty.getiDifficulty();
+		System.out.println(PossibleValues);
+		System.out.println(eGameDifficulty.getiDifficulty());
+		return (PossibleValues > eGameDifficulty.getiDifficulty());
 	}
 	
 	private static int PossibleValuesMultiplier(java.util.HashMap<java.lang.Integer,Sudoku.SudokuCell> cells) {

@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import pkgEnum.eGameDifficulty;
+
 public class SudokuTest {
 
 /*	private void PrintStars() {
@@ -140,7 +142,7 @@ public class SudokuTest {
 	@Test
 	public void SudokuRemoveTest() {
 		try {
-			Sudoku s1 = new Sudoku(9);
+			Sudoku s1 = new Sudoku(9,eGameDifficulty.EASY);
 			s1.PrintPuzzle();
 			assertTrue(s1.isPartialSudoku());
 		} catch (Exception e) {
