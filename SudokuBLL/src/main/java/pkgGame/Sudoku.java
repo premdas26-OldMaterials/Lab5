@@ -616,7 +616,9 @@ public class Sudoku extends LatinSquare implements Serializable {
 		int multiplier = 1;
 		for(Integer key: cells.keySet()) {
 			SudokuCell current = cells.get(key);
-			multiplier = multiplier*current.getLstValidValues().size();
+			if (current.getLstValidValues().size() > 0) {
+				multiplier = multiplier*current.getLstValidValues().size();
+			}
 		}
 		return multiplier;
 	}
