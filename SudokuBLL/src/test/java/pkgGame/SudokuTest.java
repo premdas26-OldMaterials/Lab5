@@ -142,12 +142,17 @@ public class SudokuTest {
 //	}
 	
 	@Test
-	public void SudokuRemoveTest() {
+	public void SudokuRemoveCellsTest() { 
 		try {
-			Sudoku s1 = new Sudoku(9,eGameDifficulty.HARD);
-			s1.PrintPuzzle();
+			Sudoku s1 = new Sudoku(9,eGameDifficulty.EASY);
+			s1.PrintPuzzle(); //Visually check to make sure values are removed and in general increasing in difficulty
 			assertTrue(s1.isPartialSudoku());
-			Random rand = new SecureRandom();
+			Sudoku s2 = new Sudoku(9,eGameDifficulty.MEDIUM);
+			s2.PrintPuzzle();
+			assertTrue(s2.isPartialSudoku());
+			Sudoku s3 = new Sudoku(9,eGameDifficulty.HARD);
+			s3.PrintPuzzle();
+			assertTrue(s3.isPartialSudoku());
 		} catch (Exception e) {
 		}
 	}
